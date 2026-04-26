@@ -1,47 +1,177 @@
-# SXJ_Automation
+# SXJ 自动化测试框架
 
-#### 介绍
-SXJ项目python+selenium自动化
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Selenium](https://img.shields.io/badge/Selenium-4.x-green)](https://www.selenium.dev/)
+[![pytest](https://img.shields.io/badge/pytest-7.x-orange)](https://pytest.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-#### 软件架构
-软件架构说明
-python+selenium+pytest
+> 金融业务全栈自动化测试框架 - 支持 Web UI 自动化与 API 接口测试
 
-#### pycharm+gitee安装教程
+## 项目亮点
 
-https://blog.csdn.net/qq_38428735/article/details/120604984?ops_request_misc=&request_id=&biz_id=102&utm_term=%E5%A6%82%E4%BD%95%E7%94%A8pycharm+gitee%E6%9D%A5%E5%9B%A2%E9%98%9F%E5%90%88%E4%BD%9C%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-120604984.142^v99^pc_search_result_base7&spm=1018.2226.3001.4187
+- **POM 架构设计** - 采用 Page Object Model 模式，实现页面元素与业务逻辑分离
+- **分层架构** - 清晰的测试层、页面层、核心层、工具层分层设计
+- **多环境支持** - 支持 UAT/PRE/PROD 环境配置切换
+- **双模测试** - 同时支持 UI 自动化测试和 API 接口测试
+- **数据驱动** - 测试数据外部化，支持 YAML/INI 配置管理
+- **丰富报告** - 集成 Allure 和 HTMLTestRunner 双报告系统
 
-#### selenium包+谷歌驱动调试教程
+## 技术栈
 
-https://blog.csdn.net/qq_43125235/article/details/125601564?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522171099127216800215090320%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=171099127216800215090320&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-125601564-null-null.142^v99^pc_search_result_base7&utm_term=pycharm%20selenium&spm=1018.2226.3001.4187
+| 分类 | 技术 |
+|------|------|
+| 语言 | Python 3.8+ |
+| 框架 | Selenium 4.x, pytest 7.x |
+| 报告 | Allure, HTMLTestRunner |
+| 接口 | requests, PyYAML |
+| 工具 | openpyxl, xmind |
 
-#### 目录说明
-采用POM模式
-1.  API_test用于接口调试，无需关注
-2.  cases 存放测试用例
-3.  core 封装selenium和常用操作
-4.  data 存放配置文件、元素文件、目录文件
-5.  page_object 存放页面对象操作：信审订单、预审、提交、签约、请款、订阅
-6.  public 封装了一些小方法：获取cookie、获取短链手机号、读取ini文件、输出报告、生成车架号
-7.  temp 存放allure测试报告
-8.  test 调试代码用，无需关注
-9.  testdata 项目用到的测试数据
-10.  xmind xmind输出为csv用例小工具
+## 架构设计
 
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      Test Cases                             │
+│                    测试用例层                               │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   Page Objects                              │
+│                  页面对象层                                 │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      Core Framework                         │
+│                    核心框架层                               │
+└─────────────────────────────────────────────────────────────┘
+```
 
-#### 使用说明
-前置条件：selenium包安装，谷歌驱动与自己版本一致。
+详见 [架构设计文档](docs/ARCHITECTURE.md)
 
-1.  所有的用户信息都在data.ini配置 uat对应uat环境参数，以此类推。
-2.  先执行get cookie获取用户信息
-3.  页面操作都在page object里
-4.  从预审pre audit到请款request pay
-5.  信审
-6.  提报、签约、请款、信审后续文审都是使用Chrome调试模式具体方法：
-    i. 浏览器右键属性
-    ii. 本地谷歌浏览器域名后增加以下代码（注意前面有个空格）：--remote-debugging-port=9222 --user-data-dir="D:\selenium\AutomationProfile\selenium"       文件夹放本地selenium包路径
-    iii. 运行代码前手动打开浏览器，登陆app or sxj主页 完成信息预录入。
-    iiii. 正常运行代码即可
-7. 客户预审和签约 main传参客户手机号
+## 目录结构
 
+```
+SXJ-automation-demo/
+├── cases/              # 测试用例
+│   ├── test_subscription.py      # 订阅业务测试
+│   ├── test_pre_audit.py         # 预审流程测试
+│   ├── test_sign_order.py        # 签约流程测试
+│   └── ...
+├── core/               # 核心框架
+│   └── basepage.py     # BasePage 封装
+├── page_object/        # 页面对象
+│   ├── pre_audit.py    # 预审页面
+│   ├── sign_order.py   # 签约页面
+│   └── ...
+├── public/utils/       # 工具函数
+├── data/               # 测试数据与配置
+├── API_test/           # API 测试模块
+├── temp/               # 测试报告输出
+├── conftest.py         # pytest fixtures
+├── pytest.ini          # pytest 配置
+└── main.py             # 入口文件
+```
 
+## 业务覆盖
+
+### 测试模块
+
+| 模块 | 功能 | 测试场景 |
+|------|------|----------|
+| 登录 | 用户认证 | 登录验证、权限检查 |
+| 预审 | 客户预审 | 资质审核、风险评估 |
+| 提报 | 订单提报 | 信息录入、数据校验 |
+| 签约 | 合同签署 | 电子签章、合同生成 |
+| 请款 | 资金申请 | 放款流程、资金核对 |
+| 审批 | 信审流程 | 审批流转、状态跟踪 |
+| 订阅 | 订阅业务 | 个人/企业订阅 |
+
+### 测试标记
+
+```python
+@pytest.mark.smoke              # 冒烟测试
+@pytest.mark.personalOrder      # 个人订单
+@pytest.mark.enterpriseOrder    # 企业订单
+@pytest.mark.preaudit           # 预审流程
+```
+
+## 快速开始
+
+### 环境准备
+
+```bash
+# 克隆项目
+git clone https://github.com/Xudage6688/SXJ-automation-demo.git
+
+# 创建虚拟环境
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+### 配置
+
+1. 复制配置模板
+```bash
+cp .env.example .env
+```
+
+2. 修改配置文件
+```ini
+# data/data.ini
+[uat]
+username = your_username
+password = your_password
+```
+
+### 运行测试
+
+```bash
+# 运行所有测试
+pytest
+
+# 运行指定标记
+pytest -m smoke
+
+# 生成 Allure 报告
+pytest --alluredir ./temp/allure/reports
+allure serve ./temp/allure/reports
+
+# 运行 HTML 报告
+python main.py
+```
+
+## 设计模式
+
+项目运用了多种设计模式：
+
+- **工厂模式**: BasePage 作为抽象工厂
+- **单例模式**: WebDriver 实例管理
+- **策略模式**: 多环境配置切换
+- **装饰器模式**: 日志记录与重试机制
+
+## 最佳实践
+
+1. **显式等待优于隐式等待**: 使用 `WebDriverWait`
+2. **配置外部化**: 敏感信息使用环境变量
+3. **日志规范**: 使用 logging 模块
+4. **类型提示**: 添加类型注解
+5. **异常处理**: 明确捕获特定异常
+
+## 文档
+
+- [架构设计](docs/ARCHITECTURE.md)
+- [技术栈](docs/TECH_STACK.md)
+
+## License
+
+[MIT License](LICENSE)
+
+## Author
+
+**Xudage6688**
+
+- GitHub: [@Xudage6688](https://github.com/Xudage6688)

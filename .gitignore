@@ -1,0 +1,71 @@
+# 字节码文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 测试报告
+temp/
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+allure-results/
+allure-report/
+
+# 敏感配置
+.env
+*.pem
+*.key
+
+# 日志文件
+*.log
+logs/
+
+# 截图
+screenshots/
+*.png
+*.jpg
+
+# Excel 临时文件
+~$*.xlsx
+~$*.xls
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 打包
+dist/
+build/
+*.egg-info/
+*.egg
+
+# mypy
+.mypy_cache/
+
+# ruff
+.ruff_cache/

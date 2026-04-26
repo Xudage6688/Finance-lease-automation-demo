@@ -1,0 +1,96 @@
+[project]
+name = "sxj-automation-demo"
+version = "1.0.0"
+description = "金融业务全栈自动化测试框架 - 支持 Web UI 自动化与 API 接口测试"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Xudage6688", email = "xudage6688@example.com"}
+]
+keywords = ["automation", "testing", "selenium", "pytest", "pom"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+dependencies = [
+    "selenium>=4.0.0",
+    "pytest>=7.0.0",
+    "requests>=2.28.0",
+    "PyYAML>=6.0",
+    "openpyxl>=3.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+    "bandit>=1.7.0",
+    "pytest-html>=3.0.0",
+    "pytest-xdist>=3.0.0",
+    "allure-pytest>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Xudage6688/SXJ-automation-demo"
+Repository = "https://github.com/Xudage6688/SXJ-automation-demo"
+Documentation = "https://github.com/Xudage6688/SXJ-automation-demo#readme"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "page_object*", "public*", "API_test*"]
+
+# Ruff 配置
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+ignore = ["E501"]
+
+# Black 配置
+[tool.black]
+line-length = 120
+target-version = ["py38", "py39", "py310", "py311"]
+
+# isort 配置
+[tool.isort]
+profile = "black"
+line_length = 120
+
+# pytest 配置
+[tool.pytest.ini_options]
+testpaths = ["cases", "API_test/test_cases"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "smoke: 冒烟测试",
+    "personalOrder: 个人订单测试",
+    "enterpriseOrder: 企业订单测试",
+    "preaudit: 预审流程测试",
+]
+
+# mypy 配置
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
