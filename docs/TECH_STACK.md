@@ -1,78 +1,78 @@
-# 技术栈
+# Tech Stack
 
-## 核心技术
+## Core Technologies
 
-| 技术 | 版本 | 用途 |
-|------|------|------|
-| Python | 3.8+ | 编程语言 |
-| Selenium | 4.x | Web 自动化框架 |
-| pytest | 7.x | 测试框架 |
-| Allure | 2.x | 测试报告 |
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Python | 3.8+ | Programming language |
+| Selenium | 4.x | Web automation framework |
+| pytest | 7.x | Testing framework |
+| Allure | 2.x | Test reporting |
 
-## 依赖库
+## Dependencies
 
-### Web 自动化
-- `selenium` - Web 驱动
-- `webdriver-manager` - 驱动管理
+### Web Automation
+- `selenium` - Web driver
+- `webdriver-manager` - Driver management
 
-### 测试框架
-- `pytest` - 测试运行器
-- `pytest-html` - HTML 报告
-- `allure-pytest` - Allure 集成
-- `pytest-xdist` - 并行执行
+### Test Framework
+- `pytest` - Test runner
+- `pytest-html` - HTML reporting
+- `allure-pytest` - Allure integration
+- `pytest-xdist` - Parallel execution
 
-### API 测试
-- `requests` - HTTP 客户端
-- `PyYAML` - YAML 解析
+### API Testing
+- `requests` - HTTP client
+- `PyYAML` - YAML parsing
 
-### 工具库
-- `openpyxl` - Excel 操作
-- `xmind` - 思维导图解析
+### Utilities
+- `openpyxl` - Excel operations
+- `xmind` - Mind map parsing
 
-### 报告生成
-- `HTMLTestRunner` - HTML 测试报告
+### Reporting
+- `HTMLTestRunner` - HTML test reports
 
-## 开发工具
+## Development Tools
 
 - **IDE**: PyCharm / VS Code
-- **版本控制**: Git
-- **浏览器**: Chrome (推荐)
+- **Version Control**: Git
+- **Browser**: Chrome (recommended)
 
-## 浏览器驱动
+## Browser Driver
 
-项目使用 Chrome 浏览器进行测试，支持：
-- 普通模式
-- 调试模式 (remote-debugging-port)
+Project uses Chrome for testing with support for:
+- Normal mode
+- Debug mode (remote-debugging-port)
 
-## 环境管理
+## Environment Management
 
-推荐使用虚拟环境：
+Virtual environment recommended:
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
 .venv\Scripts\activate     # Windows
 ```
 
-## 配置管理
+## Configuration Management
 
-- INI 格式配置文件
-- YAML 格式测试用例
-- 环境变量支持
+- INI format configuration files
+- YAML format test cases
+- Environment variable support
 
-## 报告系统
+## Reporting System
 
-### HTML 报告
+### HTML Report
 ```bash
 python main.py
 ```
 
-### Allure 报告
+### Allure Report
 ```bash
 pytest --alluredir ./temp/allure/reports
 allure serve ./temp/allure/reports
 ```
 
-## CI/CD 集成
+## CI/CD Integration
 
 ### Jenkins
 ```groovy
